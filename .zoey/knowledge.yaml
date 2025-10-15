@@ -1,0 +1,72 @@
+# Zoey Challenge Knowledge Base
+version: "1.0.0"
+title: "test local utf8"
+description: "check"
+created_at: "2025-10-15T21:04:09.865Z"
+
+# =============================================================================
+# CHALLENGE OVERVIEW
+# =============================================================================
+overview: |
+  check
+
+# =============================================================================
+# FUNCTIONAL REQUIREMENTS
+# =============================================================================
+requirements:
+  core_features:
+    - "test"
+  
+  nice_to_have:
+    - "test"
+  
+  quality_standards:
+    - "All features must have error handling"
+    - "Code must be production-ready (not prototype quality)"
+    - "Security vulnerabilities must be addressed"
+
+# =============================================================================
+# TECHNICAL CONSTRAINTS
+# =============================================================================
+constraints:
+  technology_stack:
+    - "test"
+  
+  limitations:
+    - "test"
+  
+  time_expectation: "2-4 hours"
+
+# =============================================================================
+# ACCEPTANCE CRITERIA (How we'll validate success)
+# =============================================================================
+acceptance_criteria:
+  - criteria: "test"
+    tests:
+      - "test"
+
+# =============================================================================
+# GUIDANCE FOR AI CODING AGENT
+# =============================================================================
+ai_agent_guidance: |
+  When implementing this challenge:
+  
+  1. FOCUS ON QUALITY OVER QUANTITY
+     - Write production-ready code, not quick hacks
+     - Include proper error handling and validation
+     - Make it easy for humans to review and understand
+  
+  2. DOCUMENTATION MATTERS
+     - Explain complex logic with comments
+     - Document setup steps in README
+     - Note any assumptions or trade-offs made
+  
+  3. COLLABORATION MINDSET
+     - Write code as if you're joining an existing team
+     - Follow common conventions and best practices
+     - Make it easy for others to modify and extend
+  
+  4. STAY ON TRACK
+     - Follow the requirements and acceptance criteria defined above
+     - Don't add features outside the scope without explicit approval
+     - Ask for clarification if requirements are ambiguous
