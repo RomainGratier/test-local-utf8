@@ -1,0 +1,192 @@
+# Zoey Challenge Knowledge Base
+version: "1.0.0"
+title: "Real-Time Multi-Object Detection & Classification System"
+description: "Build a production-ready computer vision system for detecting and classifying multiple objects in real-time video streams"
+created_at: "2025-01-27T10:30:00.000Z"
+
+# =============================================================================
+# CHALLENGE OVERVIEW
+# =============================================================================
+overview: |
+  You are tasked with building a real-time multi-object detection and classification system 
+  that can process video streams and identify various objects with high accuracy and low latency. 
+  This system will be deployed in a production environment where it needs to handle multiple 
+  concurrent video streams while maintaining performance and reliability.
+
+  The challenge tests your ability to work with modern computer vision frameworks, optimize 
+  models for production deployment, handle real-world data challenges, and implement robust 
+  error handling and monitoring systems.
+
+# =============================================================================
+# FUNCTIONAL REQUIREMENTS
+# =============================================================================
+requirements:
+  core_features:
+    - "Real-time object detection on video streams (minimum 30 FPS)"
+    - "Multi-class object classification (at least 10 different object categories)"
+    - "Bounding box visualization with confidence scores"
+    - "REST API for video stream processing"
+    - "Batch processing capability for uploaded video files"
+    - "Model performance monitoring and logging"
+    - "Configurable confidence thresholds"
+    - "Support for multiple video formats (MP4, AVI, MOV)"
+  
+  nice_to_have:
+    - "Web-based dashboard for monitoring and configuration"
+    - "Model versioning and A/B testing capabilities"
+    - "GPU acceleration support"
+    - "Distributed processing across multiple workers"
+    - "Integration with cloud storage services"
+    - "Real-time alerts for specific object detection"
+  
+  quality_standards:
+    - "All features must have comprehensive error handling"
+    - "Code must be production-ready with proper logging and monitoring"
+    - "Security vulnerabilities must be addressed (input validation, rate limiting)"
+    - "Performance must be optimized for production workloads"
+    - "Code must be well-documented and maintainable"
+
+# =============================================================================
+# TECHNICAL CONSTRAINTS
+# =============================================================================
+constraints:
+  technology_stack:
+    - "Python 3.8+ (required)"
+    - "PyTorch or TensorFlow for model implementation"
+    - "OpenCV for video processing"
+    - "FastAPI or Flask for REST API"
+    - "Docker for containerization"
+    - "PostgreSQL or MongoDB for data storage"
+    - "Redis for caching (optional but recommended)"
+  
+  limitations:
+    - "Must work on both CPU and GPU (with graceful degradation)"
+    - "Memory usage should not exceed 8GB for single video stream"
+    - "API response time must be under 100ms for single frame processing"
+    - "Model size should be optimized (preferably under 500MB)"
+    - "Must handle at least 5 concurrent video streams"
+  
+  time_expectation: "6-8 hours"
+
+# =============================================================================
+# ACCEPTANCE CRITERIA (How we'll validate success)
+# =============================================================================
+acceptance_criteria:
+  - criteria: "Real-time Processing Performance"
+    tests:
+      - "System processes video streams at minimum 30 FPS"
+      - "Latency between frame input and detection output < 100ms"
+      - "Memory usage remains stable during extended processing"
+  
+  - criteria: "Detection Accuracy"
+    tests:
+      - "mAP (mean Average Precision) > 0.75 on test dataset"
+      - "False positive rate < 5% for high-confidence detections"
+      - "System correctly identifies at least 10 object categories"
+  
+  - criteria: "API Functionality"
+    tests:
+      - "REST API accepts video streams and returns JSON with detections"
+      - "API handles malformed requests gracefully with proper error codes"
+      - "Batch processing endpoint works for uploaded video files"
+      - "API documentation is complete and accurate"
+  
+  - criteria: "Production Readiness"
+    tests:
+      - "Docker container builds and runs successfully"
+      - "System handles concurrent requests without crashes"
+      - "Comprehensive logging and monitoring implemented"
+      - "Error handling covers edge cases and failure scenarios"
+      - "Code passes linting and has >80% test coverage"
+
+# =============================================================================
+# DATASET AND EVALUATION
+# =============================================================================
+evaluation:
+  test_dataset:
+    description: "Use COCO dataset or similar for evaluation"
+    requirements:
+      - "Minimum 1000 test images across all object categories"
+      - "Images should represent diverse scenarios (indoor/outdoor, lighting conditions)"
+      - "Ground truth annotations must be in standard format (COCO JSON)"
+  
+  performance_metrics:
+    - "mAP (mean Average Precision) at IoU thresholds 0.5 and 0.75"
+    - "FPS (Frames Per Second) processing speed"
+    - "Memory usage and CPU/GPU utilization"
+    - "API response times and throughput"
+    - "Model inference time per frame"
+
+# =============================================================================
+# DELIVERABLES
+# =============================================================================
+deliverables:
+  required:
+    - "Complete Python codebase with proper project structure"
+    - "Dockerfile and docker-compose.yml for deployment"
+    - "requirements.txt with pinned versions"
+    - "README.md with setup and usage instructions"
+    - "API documentation (OpenAPI/Swagger)"
+    - "Unit tests with >80% coverage"
+    - "Performance evaluation report"
+  
+  optional:
+    - "Jupyter notebooks demonstrating model training/fine-tuning"
+    - "Web dashboard for monitoring and configuration"
+    - "CI/CD pipeline configuration"
+    - "Kubernetes deployment manifests"
+
+# =============================================================================
+# GUIDANCE FOR AI CODING AGENT
+# =============================================================================
+ai_agent_guidance: |
+  When implementing this challenge:
+  
+  1. FOCUS ON PRODUCTION QUALITY
+     - Write robust, maintainable code with proper error handling
+     - Implement comprehensive logging and monitoring
+     - Design for scalability and concurrent processing
+     - Include proper input validation and security measures
+  
+  2. OPTIMIZE FOR PERFORMANCE
+     - Use efficient data structures and algorithms
+     - Implement proper caching strategies
+     - Optimize model inference for real-time processing
+     - Profile and optimize bottlenecks
+  
+  3. FOLLOW BEST PRACTICES
+     - Use proper project structure and modular design
+     - Write comprehensive tests and documentation
+     - Follow PEP 8 and Python best practices
+     - Implement proper configuration management
+  
+  4. CONSIDER REAL-WORLD CHALLENGES
+     - Handle various video formats and quality levels
+     - Implement graceful degradation for resource constraints
+     - Design for fault tolerance and recovery
+     - Consider edge cases and error scenarios
+  
+  5. STAY WITHIN SCOPE
+     - Focus on core detection and classification functionality
+     - Implement required API endpoints and features
+     - Meet performance and accuracy requirements
+     - Don't add unnecessary complexity outside requirements
+
+# =============================================================================
+# EVALUATION RUBRIC
+# =============================================================================
+evaluation_rubric:
+  technical_excellence:
+    - "Code quality and architecture (25%)"
+    - "Performance optimization (20%)"
+    - "Error handling and robustness (15%)"
+    - "Testing and documentation (15%)"
+  
+  functional_completeness:
+    - "Core features implementation (15%)"
+    - "API functionality and usability (10%)"
+  
+  production_readiness:
+    - "Deployment and containerization (10%)"
+    - "Monitoring and logging (5%)"
+    - "Security considerations (5%)"
