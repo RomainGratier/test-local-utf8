@@ -1,71 +1,92 @@
-# Zoey Challenge Knowledge Base
-version: "1.0.0"
-title: "test local utf8"
-description: "check"
-created_at: "2025-10-15T21:04:09.865Z"
+version: 1.0.0
+title: Computer Vision Image Classification Challenge
+description: Build a production-ready image classification system using computer
+  vision techniques
+created_at: 2025-01-27T10:30:00.000Z
+overview: >-
+  Create a robust image classification system that can accurately categorize
+  images into predefined classes.
 
-# =============================================================================
-# CHALLENGE OVERVIEW
-# =============================================================================
-overview: |
-  check
+  The system should handle real-world scenarios including varying image sizes,
+  lighting conditions, and 
 
-# =============================================================================
-# FUNCTIONAL REQUIREMENTS
-# =============================================================================
+  different image formats. Focus on building a production-ready solution with
+  proper error handling,
+
+  validation, and extensibility.
 requirements:
   core_features:
-    - "test"
-  
+    - Image preprocessing pipeline (resize, normalize, format conversion)
+    - Model training with configurable hyperparameters
+    - Image classification API with REST endpoints
+    - Model evaluation and metrics reporting
+    - Batch processing for multiple images
+    - Model persistence and loading
   nice_to_have:
-    - "test"
-  
+    - Web interface for image upload and classification
+    - Real-time classification via WebSocket
+    - Model versioning and A/B testing support
+    - Confidence scores and uncertainty quantification
+    - Data augmentation during training
+    - Model interpretability and visualization
   quality_standards:
-    - "All features must have error handling"
-    - "Code must be production-ready (not prototype quality)"
-    - "Security vulnerabilities must be addressed"
-
-# =============================================================================
-# TECHNICAL CONSTRAINTS
-# =============================================================================
+    - All features must have comprehensive error handling
+    - Code must be production-ready with proper logging
+    - API responses must include appropriate HTTP status codes
+    - Input validation for all user-provided data
+    - Performance optimization for large image datasets
+    - Security measures for file uploads and API access
 constraints:
   technology_stack:
-    - "test"
-  
+    - Python 3.8+
+    - TensorFlow or PyTorch for deep learning
+    - FastAPI or Flask for API development
+    - OpenCV or PIL for image processing
+    - NumPy and Pandas for data manipulation
   limitations:
-    - "test"
-  
-  time_expectation: "2-4 hours"
-
-# =============================================================================
-# ACCEPTANCE CRITERIA (How we'll validate success)
-# =============================================================================
+    - Must support at least 3 image classes
+    - Minimum 100 images per class for training
+    - API response time under 2 seconds for single image
+    - Support for common image formats (JPEG, PNG, BMP)
+    - "Maximum image size: 10MB per file"
+  time_expectation: 4-6 hours
 acceptance_criteria:
-  - criteria: "test"
+  - criteria: Model achieves >85% accuracy on test set
     tests:
-      - "test"
-
-# =============================================================================
-# GUIDANCE FOR AI CODING AGENT
-# =============================================================================
+      - Train model on provided dataset
+      - Evaluate on held-out test set
+      - Report accuracy, precision, recall, F1-score
+  - criteria: API handles image upload and classification
+    tests:
+      - POST /classify endpoint accepts image files
+      - Returns JSON with predicted class and confidence
+      - Handles invalid file formats gracefully
+      - Supports batch processing endpoint
+  - criteria: System is production-ready
+    tests:
+      - Comprehensive error handling and logging
+      - Input validation and sanitization
+      - API documentation with examples
+      - Docker containerization for deployment
+      - Unit tests with >80% coverage
 ai_agent_guidance: |
   When implementing this challenge:
-  
+
   1. FOCUS ON QUALITY OVER QUANTITY
      - Write production-ready code, not quick hacks
      - Include proper error handling and validation
      - Make it easy for humans to review and understand
-  
+
   2. DOCUMENTATION MATTERS
      - Explain complex logic with comments
      - Document setup steps in README
      - Note any assumptions or trade-offs made
-  
+
   3. COLLABORATION MINDSET
      - Write code as if you're joining an existing team
      - Follow common conventions and best practices
      - Make it easy for others to modify and extend
-  
+
   4. STAY ON TRACK
      - Follow the requirements and acceptance criteria defined above
      - Don't add features outside the scope without explicit approval

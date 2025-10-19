@@ -1,8 +1,8 @@
 {
   "version": "1.0.0",
-  "title": "test local utf8 — Technical Assessment Portfolio",
+  "title": "Computer Vision Image Classification Challenge — Technical Assessment Portfolio",
   "description": "Document your approach, decision-making, and implementation quality for collaborative code review.",
-  "created_at": "2025-10-15T21:04:09.865Z",
+  "created_at": "2025-01-27T10:30:00.000Z",
   "sections": [
     {
       "id": "welcome",
@@ -52,7 +52,7 @@
       "type": "text",
       "title": "Challenge Context & Requirements",
       "content": {
-        "text": "**The Challenge:**\ntest local utf8\n\n**What You're Building:**\n[The AI agent will fill this in with specific requirements from knowledge.yaml]\n\n**Why This Matters:**\nThis challenge reflects real work you'd do on our team. We want to see how you approach problems similar to what you'd face day-to-day.\n\n**Time Expectation:**\nThis should take 2-4 hours for an experienced developer. Quality over speed — we'd rather see thoughtful code than rushed features."
+        "text": "**The Challenge:**\nComputer Vision Image Classification Challenge\n\n**What You're Building:**\n[The AI agent will fill this in with specific requirements from knowledge.yaml]\n\n**Why This Matters:**\nThis challenge reflects real work you'd do on our team. We want to see how you approach problems similar to what you'd face day-to-day.\n\n**Time Expectation:**\nThis should take 4-6 hours for an experienced developer. Quality over speed — we'd rather see thoughtful code than rushed features."
       }
     },
     {
