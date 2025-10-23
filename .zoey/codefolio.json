@@ -52,7 +52,8 @@
       "type": "text",
       "title": "Challenge Context & Requirements",
       "content": {
-        "text": "**The Challenge:**\nComputer Vision Image Classification Challenge\n\n**What You're Building:**\n[The AI agent will fill this in with specific requirements from knowledge.yaml]\n\n**Why This Matters:**\nThis challenge reflects real work you'd do on our team. We want to see how you approach problems similar to what you'd face day-to-day.\n\n**Time Expectation:**\nThis should take 4-6 hours for an experienced developer. Quality over speed — we'd rather see thoughtful code than rushed features."
+        "text": "**The Challenge:**\nComputer Vision Image Classification Challenge\n\n**Quick Start & Project Overview:**\nFor a comprehensive guide on setting up the project, understanding core features, and command-line usage, please refer to the main [`README.md`](https://github.com/user/repo/blob/main/README.md) file.\n\n**What You're Building:**\n[The AI agent will fill this in with specific requirements from knowledge.yaml]\n\n**Why This Matters:**\nThis challenge reflects real work you'd do on our team. We want to see how you approach problems similar to what you'd face day-to-day.\n\n**Time Expectation:**\nThis should take 4-6 hours for an experienced developer. Quality over speed — we'd rather see thoughtful code than rushed features.",
+        "format": "markdown"
       }
     },
     {
@@ -103,5 +104,8 @@
         "text": "**[FILL THIS IN]**\n\nLooking back on this challenge:\n\n- **What went well?** What are you most proud of?\n- **What would you improve?** Given more time, what would you refactor?\n- **What did you learn?** Any new techniques or insights?\n- **Questions for us?** Anything unclear about the requirements?\n\n**If I had more time, I would:**\n- [Add feature X for better user experience]\n- [Refactor Y for better maintainability]\n- [Add more comprehensive tests for Z]\n\n---\n\n*Ready to discuss your code? We're excited to review it with you!*"
       }
     }
+  ],
+  "highlights": [
+    "Added comprehensive README.md with quick start guide, core features, and project structure"
   ]
 }
