@@ -17,11 +17,7 @@ overview: >-
 requirements:
   core_features:
     - Image preprocessing pipeline (resize, normalize, format conversion)
-    - Model training with configurable hyperparameters
-    - Image classification API with REST endpoints
-    - Model evaluation and metrics reporting
-    - Batch processing for multiple images
-    - Model persistence and loading
+    - Flexible image input handling, including direct byte streams
   nice_to_have:
     - Web interface for image upload and classification
     - Real-time classification via WebSocket
@@ -51,24 +47,12 @@ constraints:
     - "Maximum image size: 10MB per file"
   time_expectation: 4-6 hours
 acceptance_criteria:
-  - criteria: Model achieves >85% accuracy on test set
+  - criteria: Image preprocessing pipeline supports direct byte stream input
     tests:
-      - Train model on provided dataset
-      - Evaluate on held-out test set
-      - Report accuracy, precision, recall, F1-score
-  - criteria: API handles image upload and classification
-    tests:
-      - POST /classify endpoint accepts image files
-      - Returns JSON with predicted class and confidence
-      - Handles invalid file formats gracefully
-      - Supports batch processing endpoint
-  - criteria: System is production-ready
-    tests:
-      - Comprehensive error handling and logging
-      - Input validation and sanitization
-      - API documentation with examples
-      - Docker containerization for deployment
-      - Unit tests with >80% coverage
+      - Can preprocess valid image data provided as bytes (e.g., JPEG, PNG)
+      - Handles errors gracefully for invalid or malformed byte streams
+      - Output of byte stream preprocessing matches file-based preprocessing for
+        identical image content
 ai_agent_guidance: |
   When implementing this challenge:
 

@@ -103,9 +103,20 @@
       "content": {
         "text": "**[FILL THIS IN]**\n\nLooking back on this challenge:\n\n- **What went well?** What are you most proud of?\n- **What would you improve?** Given more time, what would you refactor?\n- **What did you learn?** Any new techniques or insights?\n- **Questions for us?** Anything unclear about the requirements?\n\n**If I had more time, I would:**\n- [Add feature X for better user experience]\n- [Refactor Y for better maintainability]\n- [Add more comprehensive tests for Z]\n\n---\n\n*Ready to discuss your code? We're excited to review it with you!*"
       }
+    },
+    {
+      "id": "preprocess-from-bytes",
+      "type": "code",
+      "title": "Flexible Image Preprocessing from Bytes",
+      "content": {
+        "code": "    def preprocess_from_bytes(self, image_bytes: bytes) -> np.ndarray:\n        \"\"\"\n        Preprocess an image from bytes.\n        \n        Args:\n            image_bytes: Image data as bytes\n            \n        Returns:\n            Preprocessed image as numpy array\n        \"\"\"\n        try:\n            # Load image from bytes\n            from io import BytesIO\n            image = Image.open(BytesIO(image_bytes))\n            image_array = np.array(image)\n            \n            # Validate image\n            self._validate_image(image_array)\n            \n            # Apply preprocessing steps\n            processed = self._resize_image(image_array)\n            processed = self._convert_format(processed)\n            \n            if self.normalize:\n                processed = self._normalize_image(processed)\n                \n            return processed\n            \n        except Exception as e:\n            raise ValueError(f\"Failed to preprocess image from bytes: {str(e)}\")",
+        "language": "python",
+        "filename": "src/preprocessing/transforms.py",
+        "description": "This new method `preprocess_from_bytes` allows the image preprocessing pipeline to accept raw image data as bytes, enhancing flexibility for API integrations or direct byte stream inputs. It leverages `Pillow` (PIL) to load images from `BytesIO` and then applies the standard validation and transformation steps. See full context in `src/preprocessing/transforms.py#L437-L466`."
+      }
     }
   ],
   "highlights": [
-    "Added comprehensive README.md with quick start guide, core features, and project structure"
+    "Added `preprocess_from_bytes` method for flexible image input handling (src/preprocessing/transforms.py#L437-L466)"
   ]
 }

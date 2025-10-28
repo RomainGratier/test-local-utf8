@@ -437,3 +437,33 @@ def get_image_info(image: Union[str, Path, np.ndarray, Image.Image]) -> Dict[str
         info['error'] = str(e)
     
     return info
+    def preprocess_from_bytes(self, image_bytes: bytes) -> np.ndarray:
+        """
+        Preprocess an image from bytes.
+        
+        Args:
+            image_bytes: Image data as bytes
+            
+        Returns:
+            Preprocessed image as numpy array
+        """
+        try:
+            # Load image from bytes
+            from io import BytesIO
+            image = Image.open(BytesIO(image_bytes))
+            image_array = np.array(image)
+            
+            # Validate image
+            self._validate_image(image_array)
+            
+            # Apply preprocessing steps
+            processed = self._resize_image(image_array)
+            processed = self._convert_format(processed)
+            
+            if self.normalize:
+                processed = self._normalize_image(processed)
+                
+            return processed
+            
+        except Exception as e:
+            raise ValueError(f"Failed to preprocess image from bytes: {str(e)}")
