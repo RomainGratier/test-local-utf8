@@ -30,7 +30,7 @@ from .schemas import (
     EvaluationResponse
 )
 from ..models.cnn import CNNModel
-from ..preprocessing.transforms import ImagePreprocessor, validate_image
+from ..preprocessing.transforms import ImagePreprocessor, validate_image, validate_image_from_bytes
 
 # Configure logging
 logger = logging.getLogger(__name__)
@@ -255,34 +255,6 @@ async def batch_classify_images(
             detail=f"Error in batch classification: {str(e)}"
         )
 
-def validate_image_from_bytes(image_bytes: bytes) -> dict:
-    """Validate image from bytes."""
-    try:
-        # Try to open with PIL
-        image = Image.open(BytesIO(image_bytes))
-        
-        # Convert to numpy array
-        image_array = np.array(image)
-        
-        # Basic validation
-        if image_array.size == 0:
-            return {'valid': False, 'error': 'Empty image'}
-        
-        if len(image_array.shape) not in [2, 3]:
-            return {'valid': False, 'error': f'Invalid image shape: {image_array.shape}'}
-        
-        if len(image_array.shape) == 3 and image_array.shape[2] not in [1, 3, 4]:
-            return {'valid': False, 'error': f'Invalid number of channels: {image_array.shape[2]}'}
-        
-        return {
-            'valid': True,
-            'shape': image_array.shape,
-            'dtype': str(image_array.dtype),
-            'channels': image_array.shape[2] if len(image_array.shape) == 3 else 1
-        }
-        
-    except Exception as e:
-        return {'valid': False, 'error': f'Failed to load image: {str(e)}'}
 
 # Error handlers
 @router.exception_handler(HTTPException)

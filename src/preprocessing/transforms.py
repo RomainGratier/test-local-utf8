@@ -88,6 +88,36 @@ class ImagePreprocessor:
             
         return processed
     
+    def preprocess_from_bytes(self, image_bytes: bytes) -> np.ndarray:
+        """
+        Preprocess an image from bytes.
+        
+        Args:
+            image_bytes: Image data as bytes
+            
+        Returns:
+            Preprocessed image as numpy array
+        """
+        try:
+            # Load image from bytes
+            image = Image.open(BytesIO(image_bytes))
+            image_array = np.array(image)
+            
+            # Validate image
+            self._validate_image(image_array)
+            
+            # Apply preprocessing steps
+            processed = self._resize_image(image_array)
+            processed = self._convert_format(processed)
+            
+            if self.normalize:
+                processed = self._normalize_image(processed)
+                
+            return processed
+            
+        except Exception as e:
+            raise ValueError(f"Failed to preprocess image from bytes: {str(e)}")
+    
     def _load_image(self, image_path: str) -> np.ndarray:
         """Load image from file path."""
         if not os.path.exists(image_path):
@@ -277,6 +307,28 @@ def preprocess_single(
     return preprocessor.preprocess(image)
 
 
+def preprocess_from_bytes(image_bytes: bytes, target_size: Tuple[int, int] = (224, 224), 
+                         normalize: bool = True, target_format: str = 'RGB') -> np.ndarray:
+    """
+    Preprocess an image from bytes.
+    
+    Args:
+        image_bytes: Image data as bytes
+        target_size: Target size (width, height)
+        normalize: Whether to normalize pixel values
+        target_format: Target color format
+        
+    Returns:
+        Preprocessed image as numpy array
+    """
+    preprocessor = ImagePreprocessor(
+        target_size=target_size,
+        normalize=normalize,
+        target_format=target_format
+    )
+    return preprocessor.preprocess_from_bytes(image_bytes)
+
+
 def preprocess_batch(
     images: List[Union[str, Path, np.ndarray, Image.Image]],
     target_size: Tuple[int, int] = (224, 224),
@@ -391,6 +443,44 @@ def validate_image(image_path: Union[str, Path]) -> Dict[str, Any]:
     return info
 
 
+def validate_image_from_bytes(image_bytes: bytes) -> dict:
+    """
+    Validate image from bytes.
+    
+    Args:
+        image_bytes: Image data as bytes
+        
+    Returns:
+        Dictionary with validation results
+    """
+    try:
+        # Try to open with PIL
+        image = Image.open(BytesIO(image_bytes))
+        
+        # Convert to numpy array
+        image_array = np.array(image)
+        
+        # Basic validation
+        if image_array.size == 0:
+            return {'valid': False, 'error': 'Empty image'}
+        
+        if len(image_array.shape) not in [2, 3]:
+            return {'valid': False, 'error': f'Invalid image shape: {image_array.shape}'}
+        
+        if len(image_array.shape) == 3 and image_array.shape[2] not in [1, 3, 4]:
+            return {'valid': False, 'error': f'Invalid number of channels: {image_array.shape[2]}'}
+        
+        return {
+            'valid': True,
+            'shape': image_array.shape,
+            'dtype': str(image_array.dtype),
+            'channels': image_array.shape[2] if len(image_array.shape) == 3 else 1
+        }
+        
+    except Exception as e:
+        return {'valid': False, 'error': f'Failed to load image: {str(e)}'}
+
+
 def get_image_info(image: Union[str, Path, np.ndarray, Image.Image]) -> Dict[str, Any]:
     """
     Get detailed information about an image.
@@ -437,33 +527,3 @@ def get_image_info(image: Union[str, Path, np.ndarray, Image.Image]) -> Dict[str
         info['error'] = str(e)
     
     return info
-    def preprocess_from_bytes(self, image_bytes: bytes) -> np.ndarray:
-        """
-        Preprocess an image from bytes.
-        
-        Args:
-            image_bytes: Image data as bytes
-            
-        Returns:
-            Preprocessed image as numpy array
-        """
-        try:
-            # Load image from bytes
-            from io import BytesIO
-            image = Image.open(BytesIO(image_bytes))
-            image_array = np.array(image)
-            
-            # Validate image
-            self._validate_image(image_array)
-            
-            # Apply preprocessing steps
-            processed = self._resize_image(image_array)
-            processed = self._convert_format(processed)
-            
-            if self.normalize:
-                processed = self._normalize_image(processed)
-                
-            return processed
-            
-        except Exception as e:
-            raise ValueError(f"Failed to preprocess image from bytes: {str(e)}")
